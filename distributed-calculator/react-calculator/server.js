@@ -38,6 +38,26 @@ app.post('/calculate/divide', async (req, res) => {
   req.pipe(request(divideUrl)).pipe(res);
 });
 
+app.post('/calculate/sin', async (req, res) => {
+  const divideUrl = `${daprUrl}/sinapp/method/sin`;
+  req.pipe(request(divideUrl)).pipe(res);
+});
+
+app.post('/calculate/cos', async (req, res) => {
+  const divideUrl = `${daprUrl}/cosapp/method/cos`;
+  req.pipe(request(divideUrl)).pipe(res);
+});
+
+app.post('/calculate/log', async (req, res) => {
+  const divideUrl = `${daprUrl}/logapp/method/log`;
+  req.pipe(request(divideUrl)).pipe(res);
+});
+
+app.post('/calculate/power', async (req, res) => {
+  const divideUrl = `${daprUrl}/powerapp/method/power`;
+  req.pipe(request(divideUrl)).pipe(res);
+});
+
 // Forward state retrieval to Dapr state endpoint
 app.get('/state', async (req, res) => req.pipe(request(`${stateUrl}/calculatorState`)).pipe(res));
 
