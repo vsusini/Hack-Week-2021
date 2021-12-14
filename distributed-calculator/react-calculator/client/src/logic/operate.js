@@ -2,7 +2,11 @@ const operationMap = {
   "+": "add",
   "-": "subtract",
   "x": "multiply",
-  "÷": "divide"
+  "÷": "divide",
+  "cos": "cos",
+  "sin": "sin",
+  "log": "log",
+  "power": "power"
 };
 
 export default async function operate(operandOne, operandTwo, operationSymbol) {

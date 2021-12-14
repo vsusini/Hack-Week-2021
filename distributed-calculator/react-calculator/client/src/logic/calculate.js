@@ -71,6 +71,40 @@ export default async function calculate(obj, buttonName) {
     return {};
   }
 
+  if (buttonName === "Cos") {
+    if (obj.operation && obj.next) {
+      let result = await operate(obj.total, obj.next, obj.operation);
+      return {
+        total: result,
+        next: null,
+        operation: null,
+      };
+    }
+    if (obj.next) {
+      return {
+        next: obj.next
+      };
+    }
+    return {};
+  }
+
+  if (buttonName === "Sin") {
+    if (obj.operation && obj.next) {
+      let result = await operate(obj.total, obj.next, obj.operation);
+      return {
+        total: result,
+        next: null,
+        operation: null,
+      };
+    }
+    if (obj.next) {
+      return {
+        next: obj.next,
+      };
+    }
+    return {};
+  }
+
   if (buttonName === ".") {
     if (obj.next) {
       // ignore a . if the next number already has one
@@ -85,6 +119,8 @@ export default async function calculate(obj, buttonName) {
       next: "0."
     };
   }
+
+
 
   if (buttonName === "=") {
     if (obj.next && obj.operation) {
