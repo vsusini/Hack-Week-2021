@@ -6,7 +6,8 @@ const operationMap = {
   "cos": "cos",
   "sin": "sin",
   "log": "log",
-  "power": "power"
+  "power": "power",
+  "Mod" : "modular"
 };
 
 export default async function operate(operandOne, operandTwo, operationSymbol) {

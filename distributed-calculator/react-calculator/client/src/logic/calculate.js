@@ -120,8 +120,6 @@ export default async function calculate(obj, buttonName) {
     };
   }
 
-
-
   if (buttonName === "=") {
     if (obj.next && obj.operation) {
       const total = await operate(obj.total, obj.next, obj.operation);

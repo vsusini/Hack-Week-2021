@@ -24,13 +24,13 @@ func add(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	var operands Operands
 	json.NewDecoder(r.Body).Decode(&operands)
-	fmt.Println(fmt.Sprintf("%s%f%s%f", "Adding ", operands.OperandOne, " to ", operands.OperandTwo))
-	json.NewEncoder(w).Encode(operands.OperandOne + operands.OperandTwo)
+	fmt.Println(fmt.Sprintf("%s%f%s%f", "Modding ", operands.OperandOne, " to ", operands.OperandTwo))
+	json.NewEncoder(w).Encode(int(operands.OperandOne) % int(operands.OperandTwo))
 }
  
 func main() {
 	router := mux.NewRouter()
 	
-	router.HandleFunc("/add", add).Methods("POST", "OPTIONS")
+	router.HandleFunc("/modular", add).Methods("POST", "OPTIONS")
 	log.Fatal(http.ListenAndServe(":6001", router))
 }
