@@ -39,7 +39,7 @@ app.post('/calculate/divide', async (req, res) => {
 });
 
 app.post('/calculate/sin', async (req, res) => {
-  const divideUrl = `${daprUrl}/sinapp/method/sin`;
+  const divideUrl = `${daprUrl}/cosapp/method/sin`;
   req.pipe(request(divideUrl)).pipe(res);
 });
 
@@ -48,7 +48,7 @@ app.post('/calculate/cos', async (req, res) => {
   req.pipe(request(divideUrl)).pipe(res);
 });
 
-app.post('/calculate/log', async (req, res) => {
+app.post('/calculate/logarithm', async (req, res) => {
   const divideUrl = `${daprUrl}/logapp/method/logarithm`;
   req.pipe(request(divideUrl)).pipe(res);
 });
