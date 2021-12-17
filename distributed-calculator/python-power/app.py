@@ -16,13 +16,13 @@ import sys
 app = flask.Flask(__name__)
 CORS(app)
 
-@app.route('/logarithm', methods=['POST'])
+@app.route('/power', methods=['POST'])
 def logarithm():
     content = request.json
     [operand_one, operand_two] = [float(content['operandOne']), float(content['operandTwo'])]
-    print(f"Calculating logarithm {operand_one} and {operand_two}", flush=True)
+    print(f"Calculating {operand_one} ^ {operand_two}", flush=True)
     try:
-        cmd = './dapr_logarithm' + ' ' + str(operand_one) + ' ' + str(operand_two)
+        cmd = './dapr_exponentiation' + ' ' + str(operand_one) + ' ' + str(operand_two)
         result = os.system(cmd)
         if str(os.system(cmd)) == "32512":
             raise Exception("MyException")
@@ -30,8 +30,8 @@ def logarithm():
         return jsonify(result)
     except Exception as e:
         print("No Matlab :(")
-        result = math.log10(operand_one) / math.log10(operand_two)
+        result = int(operand_one) ** int(operand_two)
         # Sneaky, it works shhhhhh
         return jsonify(math.ceil(result*100000)/100000)
 
-app.run(port=5002)
+app.run(port=5003)

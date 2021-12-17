@@ -40,16 +40,20 @@ export default class ButtonPanel extends React.Component {
           <Button name="%" clickHandler={this.handleClick} />
           <Button name="÷" clickHandler={this.handleClick} orange />
         </div>
-        <div>
+        {/* <div>
           <Button name="mod" clickHandler={this.handleClick}  />
           <input type="file" onChange={this.onFileChange} />
                 <Button name="Upload!" clickHandler={this.handleClick} orange wide></Button>
+        </div> */}
+        <div>
+          <Button name="mod" clickHandler={this.handleClick} orange wide/>
         </div>
         <div>
           <Button name="sin" clickHandler={this.handleClick} />
           <Button name="cos" clickHandler={this.handleClick} />
           <Button name="log" clickHandler={this.handleClick} orange />
           <Button name="x^y" clickHandler={this.handleClick} orange />
+
         </div>
         <div>
           <Button name="7" clickHandler={this.handleClick} />
