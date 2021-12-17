@@ -49,7 +49,7 @@ app.post('/calculate/cos', async (req, res) => {
 });
 
 app.post('/calculate/log', async (req, res) => {
-  const divideUrl = `${daprUrl}/logapp/method/log`;
+  const divideUrl = `${daprUrl}/logapp/method/logarithm`;
   req.pipe(request(divideUrl)).pipe(res);
 });
 
@@ -59,6 +59,11 @@ app.post('/calculate/power', async (req, res) => {
 });
 
 app.post('/calculate/modular', async (req, res) => {
+  const divideUrl = `${daprUrl}/modularapp/method/modular`;
+  req.pipe(request(divideUrl)).pipe(res);
+});
+
+app.post('/calculate/file', async (req, res) => {
   const divideUrl = `${daprUrl}/modularapp/method/modular`;
   req.pipe(request(divideUrl)).pipe(res);
 });

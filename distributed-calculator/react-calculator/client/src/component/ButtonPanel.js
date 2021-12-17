@@ -2,6 +2,8 @@ import Button from "./Button";
 import React from "react";
 import PropTypes from "prop-types";
 
+import operateFile from "../logic/operateFile";
+
 import "./ButtonPanel.css";
 
 export default class ButtonPanel extends React.Component {
@@ -9,10 +11,26 @@ export default class ButtonPanel extends React.Component {
     clickHandler: PropTypes.func,
   };
 
+  file;
+
   handleClick = buttonName => {
-    this.props.clickHandler(buttonName);
+    if (buttonName === "Upload!"){
+      console.log("Handling file")
+      operateFile(this.file)
+    } else {
+      this.props.clickHandler(buttonName);
+    }
   };
 
+        // On file select (from the pop up)
+        onFileChange = event => {
+    
+          // Update the state
+          this.setState({ selectedFile: event.target.files[0] });
+          this.file = event.target.files[0]
+        
+        };
+  
   render() {
     return (
       <div className="component-button-panel">
@@ -23,7 +41,15 @@ export default class ButtonPanel extends React.Component {
           <Button name="÷" clickHandler={this.handleClick} orange />
         </div>
         <div>
-          <Button name="Mod" clickHandler={this.handleClick} orange wide />
+          <Button name="mod" clickHandler={this.handleClick}  />
+          <input type="file" onChange={this.onFileChange} />
+                <Button name="Upload!" clickHandler={this.handleClick} orange wide></Button>
+        </div>
+        <div>
+          <Button name="sin" clickHandler={this.handleClick} />
+          <Button name="cos" clickHandler={this.handleClick} />
+          <Button name="log" clickHandler={this.handleClick} orange />
+          <Button name="x^y" clickHandler={this.handleClick} orange />
         </div>
         <div>
           <Button name="7" clickHandler={this.handleClick} />

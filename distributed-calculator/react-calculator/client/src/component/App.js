@@ -32,6 +32,7 @@ export default class App extends React.Component {
 
     const state = [{ 
       key: "calculatorState", 
+      selectedFile: null,
       value 
     }];
     

@@ -71,35 +71,25 @@ export default async function calculate(obj, buttonName) {
     return {};
   }
 
-  if (buttonName === "Cos") {
-    if (obj.operation && obj.next) {
-      let result = await operate(obj.total, obj.next, obj.operation);
+  if (buttonName === "cos") {
+    if (obj.next) {
+      let result = await operate(obj.total, obj.next, "cos");
       return {
         total: result,
         next: null,
         operation: null,
-      };
-    }
-    if (obj.next) {
-      return {
-        next: obj.next
       };
     }
     return {};
   }
 
-  if (buttonName === "Sin") {
-    if (obj.operation && obj.next) {
-      let result = await operate(obj.total, obj.next, obj.operation);
+  if (buttonName === "sin") {
+    if (obj.next) {
+      let result = await operate(obj.total, obj.next, "sin");
       return {
         total: result,
         next: null,
         operation: null,
-      };
-    }
-    if (obj.next) {
-      return {
-        next: obj.next,
       };
     }
     return {};

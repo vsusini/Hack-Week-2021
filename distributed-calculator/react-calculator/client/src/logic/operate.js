@@ -5,9 +5,9 @@ const operationMap = {
   "÷": "divide",
   "cos": "cos",
   "sin": "sin",
-  "log": "log",
-  "power": "power",
-  "Mod" : "modular"
+  "log": "logarithm",
+  "x^y": "power",
+  "mod" : "modular",
 };
 
 export default async function operate(operandOne, operandTwo, operationSymbol) {
@@ -27,6 +27,35 @@ export default async function operate(operandOne, operandTwo, operationSymbol) {
     body: JSON.stringify({
       operandOne,
       operandTwo
+    }),
+  });
+  const response = await rawResponse.json();
+
+  return response.toString();
+}
+
+export async function operateFile(file) {
+
+  console.log(`Calling File service`);
+
+  var reader = new FileReader();
+    reader.onload = function(event) {
+        console.log('File content:', event.target.result);
+        var text = JSON.parse(event.target.result);
+        console.log(text)
+    };
+    reader.readAsText(file);
+
+
+
+  const rawResponse = await fetch(`/calculate/file`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      file,
     }),
   });
   const response = await rawResponse.json();
