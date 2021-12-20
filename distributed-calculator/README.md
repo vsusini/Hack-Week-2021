@@ -672,3 +672,81 @@ For more information on how to configure the files visit [How-To: Debug multiple
 ## Next Steps
 
 - Explore additional [quickstarts](../README.md#quickstarts).
+
+
+## Get distributed calculator project working for Python (Multiplication) 
+
+install libraies
+    in sudo: export FLASK_RUN_PORT=5000
+    in sudo: export FLASK_APP=app.py
+    in sudo: dapr run --app-id multiplyapp --app-port 5000 --dapr-http-port 3501 flask run
+
+## Get distributed calculator working for Node (Division)
+Had to do some messing about to get it install when using sudo. If it complains in sudo, then it needs to be installed in sudo I seemed to notice.
+
+## Get distributed calculator working for Go (Addition)
+Working locally on my VM. The Go version setup following setups from Quickstart. 
+To setup go, may need to also install a wget version. I used go1.15.2.linux-amd64.tar.gz
+Had to mess about in sudo and non-sudo. 
+apt install golang-go
+go get -u github.com/gorilla/mux
+go build app.go
+sudo su
+ sudo dapr run --app-id addapp --app-port 6000 --dapr-http-port 3503 ./app
+
+## Get distributed calculator working for .Net (Subtraction)
+sudo snap install dotnet-sdk --classic --channel=3.1
+sudo snap alias dotnet-sdk.dotnet dotnet
+sudo snap install dotnet-runtime-31 --classic
+sudo snap alias dotnet-runtime-31.dotnet dotnet
+export ASPNETCORE_URLS="http://localhost:7000"
+Build the app. Run:
+dotnet build
+dapr run --app-id subtractapp --app-port 7000 --dapr-http-port 3504 -- dotnet run -project Subtract.dll --urls http://localhost:7000
+Working locally on my linux VM -V  
+Determine new button's or functionality to add for our Python/Matlab Container
+
+Change port # (6001 as example) in app.go
+go get -u github.com/gorilla/mux
+go build app.go
+sudo su
+dapr run --app-id gotestapp --app-port 6001 --dapr-http-port 3498 ./app
+Proof: (sudo dapr list)
+
+
+## Hooking the new Python container(s) into the React Calculator. Log example. 	
+Hooking up a new python service is as follows:
+
+Change port # (5001 as example) in Dockerfile
+Use same port in the app.py: (app.run(port=5001))
+sudo su
+export FLASK_RUN_PORT=5001
+export FLASK_APP=app.py
+dapr run --app-id logapp --app-port 5001 --dapr-http-port 3509 flask run
+The --app-id is used in the server.js for urls. If the endpoint isn't changed in app.py the url would be 
+/testapp/method/multiply
+The --dapr-http-port may need to be set somewhere, haven't found where just yet.    
+Proof: (sudo dapr list)
+
+
+
+## Possibly adding new buttons? For a log function or something? 	Buttons are easy to add. Simply adding a new <div> </div> to the ButtonPanel.js with 4 buttons and app will adjust correctly.
+
+Modular Function on Calculator	
+Added in go in go-mod.
+go get -u github.com/gorilla/mux
+go build app.go
+sudo su
+dapr run --app-id modularapp --app-port 6001 --dapr-http-port 3498 ./app
+
+
+## Sin Function on Calculator (go)	
+go get -u github.com/gorilla/mux
+go build app.go
+sudo su
+dapr run --app-id sinapp --app-port 6002 --dapr-http-port 3497 ./app
+Cos Function on Calculator (go)	
+go get -u github.com/gorilla/mux
+go build app.go
+sudo su
+dapr run --app-id cosapp --app-port 6003 --dapr-http-port 3496 ./app
